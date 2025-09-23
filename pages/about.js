@@ -24,7 +24,7 @@ export default function About() {
     {
       name: "ديرب نجم",
       governorate: "الشرقية",
-      address: "بجوار مدرسة نصر عدلان",
+      address: "بجوار مدرسة نصر عابدين",
       map: "https://www.google.com/maps/place/30%C2%B044'37.1%22N+31%C2%B027'34.6%22E/@30.7436275,31.4570465,17z/data=!3m1!4b1!4m4!3m3!8m2!3d30.7436275!4d31.4596214?hl=en&entry=ttu&g_ep=EgoyMDI1MDkxNy4wIKXMDSoASAFQAw%3D%3D",
       phones: ["01050048396"],
     },
@@ -67,7 +67,7 @@ export default function About() {
                flex items-center justify-center gap-2 text-center backdrop-blur-md"
               >
                 <img
-                  src="/location-pin.png"
+                  src="/location-pin.svg"
                   alt="Location"
                   className="w-5 h-5"
                 />

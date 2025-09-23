@@ -1,9 +1,11 @@
 export default async function handler(req, res) {
   if (req.method === "POST") {
-    const { message } = req.body;
+    const { name, phone, branch, message } = req.body;
     const BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
 
     const chatIds = ["6187187718", "8154004874"];
+
+    const text = `📩 رسالة جديدة:\n\n\n الاسم: ${name}\n\n رقم الموبايل: ${phone}\n\n الفرع: ${branch}\n\n الرسالة:\n${message}`;
 
     try {
       await Promise.all(
@@ -11,7 +13,7 @@ export default async function handler(req, res) {
           fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ chat_id: chatId, text: message }),
+            body: JSON.stringify({ chat_id: chatId, text }),
           })
         )
       );

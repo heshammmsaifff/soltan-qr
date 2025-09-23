@@ -9,17 +9,19 @@ export default function Home() {
         <img
           src="/logo.png"
           alt="Logo"
-          className="w-[150px] h-[180px] object-contain mb-6"
+          className="w-[150px] mt-[50px] h-[180px] object-contain mb-20"
         />
 
         {/* العنوان */}
-        <h1 className="text-3xl font-extrabold mb-2">هنا السلطان</h1>
-        <p className="text-base font-medium mb-10">شكراً لاختيارك السلطان</p>
+        <h1 className="text-5xl font-extrabold mb-2">هنا السلطان</h1>
+        <p className="text-2xl mt-[38px] font-medium mb-10">
+          شكراً لاختيارك السلطان
+        </p>
 
         {/* زر الفروع */}
         <Link
           href="/about"
-          className="w-[328px] flex items-center justify-center h-[101px] bg-[#5b4630] text-white text-4xl font-bold rounded-2xl mb-4 shadow-md hover:bg-[#6b5239] transition"
+          className="w-[328px] mt-[100px] flex items-center justify-center h-[101px] bg-[#5b4630] text-white text-4xl font-bold rounded-2xl mb-4 shadow-md hover:bg-[#6b5239] transition"
         >
           فروعنا
         </Link>

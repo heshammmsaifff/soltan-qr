@@ -14,13 +14,16 @@ const branches = [
 function Contact() {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
-  const [branch, setBranch] = useState(branches[0]);
+  const [branch, setBranch] = useState("");
   const [message, setMessage] = useState("");
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (loading) return; // منع الضغط المتكرر
 
+    setLoading(true);
     const data = { name, phone, branch, message };
 
     try {
@@ -32,6 +35,7 @@ function Contact() {
       router.push("/after-contact");
     } catch (err) {
       console.error("Error sending message:", err);
+      setLoading(false);
     }
   };
 
@@ -46,7 +50,7 @@ function Contact() {
       {/* الفورم */}
       <form
         onSubmit={handleSubmit}
-        className="flex flex-col items-center w-full max-w-md"
+        className="flex flex-col items-center w-full max-w-md relative"
       >
         <input
           type="text"
@@ -60,23 +64,54 @@ function Contact() {
         <input
           type="tel"
           value={phone}
-          onChange={(e) => setPhone(e.target.value)}
+          onChange={(e) => {
+            // يمنع كتابة أي حاجة غير أرقام
+            const value = e.target.value.replace(/\D/g, "");
+            setPhone(value);
+          }}
           placeholder="رقم الموبايل"
           className="w-full p-4 mb-4 rounded-xl bg-white text-black shadow-md focus:outline-none"
           required
+          dir="rtl"
+          maxLength={11}
+          minLength={11}
+          pattern="[0-9]{11}"
         />
 
-        <select
-          value={branch}
-          onChange={(e) => setBranch(e.target.value)}
-          className="w-full p-4 mb-4 rounded-xl bg-white text-black shadow-md focus:outline-none"
-        >
-          {branches.map((b) => (
-            <option key={b} value={b}>
-              {b}
+        {/* الـ select مع سهم مخصص */}
+        <div className="relative w-full mb-4">
+          <select
+            value={branch}
+            onChange={(e) => setBranch(e.target.value)}
+            className="w-full p-4 rounded-xl bg-white text-black shadow-md focus:outline-none appearance-none pr-4"
+            required
+          >
+            <option value="" disabled>
+              اختر الفرع
             </option>
-          ))}
-        </select>
+            {branches.map((b) => (
+              <option key={b} value={b}>
+                {b}
+              </option>
+            ))}
+          </select>
+
+          {/* أيقونة السهم */}
+          <svg
+            className="absolute left-4 top-1/2 transform -translate-y-1/2 w-6 h-6 text-black ml-2 pointer-events-none"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M19 9l-7 7-7-7"
+            />
+          </svg>
+        </div>
 
         <textarea
           value={message}
@@ -87,9 +122,41 @@ function Contact() {
 
         <button
           type="submit"
-          className="mt-6 w-[150px] h-[50px] bg-[#5b4630] text-white font-bold rounded-[30px] shadow-md hover:bg-[#6b5239] transition flex items-center justify-center"
+          disabled={loading}
+          className={`mt-6 w-[150px] h-[50px] font-bold rounded-[30px] shadow-md transition flex items-center justify-center
+            ${
+              loading
+                ? "bg-gray-400 cursor-not-allowed"
+                : "bg-[#5b4630] text-white hover:bg-[#6b5239]"
+            }`}
         >
-          إرسال
+          {loading ? (
+            <div className="flex items-center gap-2">
+              <svg
+                className="animate-spin h-5 w-5 text-white"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <circle
+                  className="opacity-25"
+                  cx="12"
+                  cy="12"
+                  r="10"
+                  stroke="currentColor"
+                  strokeWidth="4"
+                ></circle>
+                <path
+                  className="opacity-75"
+                  fill="currentColor"
+                  d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+                ></path>
+              </svg>
+              <span>جارٍ الإرسال...</span>
+            </div>
+          ) : (
+            "إرسال"
+          )}
         </button>
       </form>
     </div>

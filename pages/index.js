@@ -9,12 +9,12 @@ export default function Home() {
         <img
           src="/logo.png"
           alt="Logo"
-          className="w-[150px] mt-[50px] h-[180px] object-contain mb-20"
+          className="w-[150px] h-[180px] object-contain mb-15"
         />
 
         {/* العنوان */}
         <h1 className="text-5xl font-extrabold mb-2">هنا السلطان</h1>
-        <p className="text-2xl mt-[38px] font-medium mb-10">
+        <p className="text-2xl mt-[30px] font-medium mb-5">
           شكراً لاختيارك السلطان
         </p>
 

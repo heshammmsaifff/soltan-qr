@@ -7,10 +7,10 @@ export default function Home() {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setMounted(true); // الصفحة تم mount على العميل
+    setMounted(true);
   }, []);
 
-  if (!mounted) return null; // لا نعرض شيء على السيرفر
+  if (!mounted) return null;
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-between bg-gradient-to-b from-[#1c1c1c] via-[#3a2c1b] to-[#d1a562] text-white font-[Cairo] px-6 py-10">
@@ -39,7 +39,7 @@ export default function Home() {
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.5 }}
         >
-          شكراً لاختيارك السلطان
+          شكراً لإختيارك السلطان
         </motion.p>
 
         <motion.div

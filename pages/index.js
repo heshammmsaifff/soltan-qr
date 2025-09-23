@@ -1,12 +1,20 @@
 import Link from "next/link";
 import { FaFacebookF, FaInstagram, FaTiktok } from "react-icons/fa";
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 
 export default function Home() {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true); // الصفحة تم mount على العميل
+  }, []);
+
+  if (!mounted) return null; // لا نعرض شيء على السيرفر
+
   return (
     <div className="min-h-screen flex flex-col items-center justify-between bg-gradient-to-b from-[#1c1c1c] via-[#3a2c1b] to-[#d1a562] text-white font-[Cairo] px-6 py-10">
       <div className="flex flex-col items-center">
-        {/* اللوجو */}
         <motion.img
           src="/logo.png"
           alt="Logo"
@@ -16,7 +24,6 @@ export default function Home() {
           transition={{ duration: 0.8, ease: "easeOut" }}
         />
 
-        {/* العنوان */}
         <motion.h1
           className="text-5xl font-extrabold mb-2"
           initial={{ y: -50, opacity: 0 }}
@@ -25,6 +32,7 @@ export default function Home() {
         >
           هنا السلطان
         </motion.h1>
+
         <motion.p
           className="text-2xl mt-[30px] font-medium mb-5"
           initial={{ y: -20, opacity: 0 }}
@@ -61,7 +69,6 @@ export default function Home() {
         </motion.div>
       </div>
 
-      {/* الفوتر */}
       <div className="flex items-center justify-center gap-6 mt-10 text-white">
         <a
           href="https://www.facebook.com/share/1CKMjXBUgK/?mibextid=wwXIfr"

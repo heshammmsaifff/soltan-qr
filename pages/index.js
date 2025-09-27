@@ -24,14 +24,14 @@ export default function Home() {
           transition={{ duration: 0.8, ease: "easeOut" }}
         />
 
-        <motion.h1
-          className="text-5xl font-extrabold mb-2"
+        <motion.img
+          src="/Frame.png"
+          alt="hero"
+          // className="w-[150px] h-[180px] object-contain mb-15"
           initial={{ y: -50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.3 }}
-        >
-          هنا السلطان
-        </motion.h1>
+        />
 
         <motion.p
           className="text-2xl mt-[30px] font-medium mb-5"

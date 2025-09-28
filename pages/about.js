@@ -1,3 +1,5 @@
+import { motion } from "framer-motion";
+
 export default function About() {
   const branches = [
     {
@@ -46,42 +48,54 @@ export default function About() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#1c1c1c] via-[#3a2c1b] to-[#d1a562] font-[Cairo] px-6 py-10">
-      {/* العناوين */}
       <div className="text-center mb-10 text-white">
         <h1 className="text-4xl font-extrabold mb-2">فروعنا</h1>
         <h2 className="text-sm font-medium">قم بالضغط للحصول على الخريطة</h2>
       </div>
 
-      {/* عرض الفروع */}
       <div className="flex flex-col items-center gap-6">
         {branches.map((branch, index) => (
           <div key={index} className="w-full max-w-[350px]">
-            {/* الزر */}
-            <div className="flex items-center justify-center">
+            <motion.div
+              className="flex items-center justify-center"
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{ duration: 0.5, ease: "easeInOut" }}
+            >
               <a
                 href={branch.map}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-[380px] h-[101px] rounded-[30px] border border-white opacity-200 p-4 shadow-md 
-               bg-gradient-to-b from-[#6b5239] to-[#a88354] 
-               flex items-center justify-center gap-2 text-center backdrop-blur-md"
+                className="relative w-[380px] h-[101px] rounded-[30px] p-[1px]
+             bg-gradient-to-tr from-[#A4824C] via-[#1B130B] to-[#A4824C] shadow-md"
               >
-                <img
-                  src="/location-pin.svg"
-                  alt="Location"
-                  className="w-5 h-5"
-                />
-                <span className="text-[25px] text-white">{branch.name}</span>
+                <div
+                  className="w-full h-full rounded-[28px]
+                  bg-[#493A25] flex items-center justify-center gap-3 text-center"
+                >
+                  <span className="text-[25px] text-white">{branch.name}</span>
+                  <img
+                    src="/location-pin.svg"
+                    alt="Location"
+                    className="w-6 h-6"
+                  />
+                </div>
               </a>
-            </div>
+            </motion.div>
 
-            {/* المحافظة والعنوان وأرقام الموبايل */}
-            <div className="flex justify-between mt-2 px-2">
-              <p className="text-sm font-bold text-black">
-                {branch.governorate}
-              </p>
-              <div className="flex flex-col text-right">
-                <p className="text-sm text-white">{branch.address}</p>
+            <div className="flex mt-2 px-2 gap-4">
+              <div className="flex items-start min-w-[80px]">
+                <p className="text-sm font-bold text-black flex items-center gap-1">
+                  <span className="w-2 h-2 bg-black rounded-full inline-block"></span>
+                  {branch.governorate}
+                </p>
+              </div>
+
+              <div className="flex flex-col text-right flex-1">
+                <p className="text-sm text-white flex items-center gap-1">
+                  <span className="w-2 h-2 bg-white rounded-full inline-block"></span>
+                  {branch.address}
+                </p>
                 {branch.phones.map((phone, idx) => (
                   <a
                     key={idx}

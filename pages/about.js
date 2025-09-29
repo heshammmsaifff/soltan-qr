@@ -85,8 +85,8 @@ export default function About() {
 
             <div className="flex mt-2 px-2 gap-4">
               <div className="flex items-start min-w-[80px]">
-                <p className="text-sm font-bold text-black flex items-center gap-1">
-                  <span className="w-2 h-2 bg-black rounded-full inline-block"></span>
+                <p className="text-sm font-bold text-white flex items-center gap-1">
+                  <span className="w-2 h-2 bg-white rounded-full inline-block"></span>
                   {branch.governorate}
                 </p>
               </div>

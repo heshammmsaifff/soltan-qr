@@ -100,7 +100,7 @@ export default function About() {
                   <a
                     key={idx}
                     href={`tel:${phone}`}
-                    className="text-sm text-white underline hover:text-yellow-300"
+                    className="text-sm mr-[11px] text-white underline hover:text-yellow-300"
                   >
                     {phone}
                   </a>
